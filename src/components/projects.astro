@@ -1,0 +1,72 @@
+---
+import { projects } from "../data/projects";
+import ProjectCard from "./project-card.astro";
+---
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<section class="py-16 bg-gray-100 dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2
+      class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12"
+    >
+      🚀 Proyectos
+    </h2>
+
+    <!-- Contenedor del carrusel -->
+    <div class="relative">
+      <!-- Slider horizontal -->
+      <div
+        id="project-slider"
+        class="flex overflow-x-auto gap-6 no-scrollbar scroll-smooth"
+      >
+        {
+          projects.map((p) => (
+            <div class="flex-shrink-0 w-full sm:w-[22rem]">
+              <ProjectCard project={p} />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Flechas -->
+      <!-- Flechas -->
+      <button
+        id="btn-left"
+        type="button"
+        class="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 text-2xl px-3 py-1 shadow rounded-full hover:scale-105 transition"
+      >
+        &#10094;
+      </button>
+
+      <button
+        id="btn-right"
+        type="button"
+        class="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 text-2xl px-3 py-1 shadow rounded-full hover:scale-105 transition"
+      >
+        &#10095;
+      </button>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const slider = document.getElementById('project-slider');
+
+  document.getElementById('btn-left')?.addEventListener('click', () => {
+    slider?.scrollBy({ left: -300, behavior: 'smooth' });
+  });
+
+  document.getElementById('btn-right')?.addEventListener('click', () => {
+    slider?.scrollBy({ left: 300, behavior: 'smooth' });
+  });
+</script>
+

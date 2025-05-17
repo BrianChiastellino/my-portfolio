@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/navbar.astro";
+import About from "../components/about.astro";
+import Contact from "../components/contact.astro";
+import ProjectCard from "../components/project-card.astro";
+
+// --> Data
+import { projects } from "../data/projects";
+import Projects from "../components/projects.astro";
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout title="Brian Chiastellino - Portfolio">
+  <header>
+    <Navbar />
+  </header>
+
+  <main class="scroll-smooth">
+    <!-- SECCIÓN PRESENTACIÓN -->
+    <section id="sobre-mi">
+      <About />
+    </section>
+
+    <section id="proyectos">
+      <Projects />
+    </section>
+
+    <footer>
+      <section id="contact">
+        <Contact />
+      </section>
+    </footer>
+  </main>
+
+  <!-- <Layout title="Chiastellino Brian - Portfolio">
+    <header>
+        <Navbar />
+    </header>
+
+    <main class="mt-20 scroll-smooth">
+        <section id="sobre-mi">
+            <About />
+        </section>
+
+        <section id="skills">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+                💻 Tecnologías que manejo
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                { skills.map(( s ) => <Skills skills = {s}/> )}
+            </div>
+        </section>
+
+        <section id="proyectos" class="py-12 px-4 max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
+                Proyectos
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.map((p) => <ProjectCard project={p} />)}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section id="contact">
+            <Contact />
+        </section>
+    </footer>
+</Layout> -->
+</Layout>
