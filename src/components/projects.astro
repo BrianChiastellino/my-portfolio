@@ -1,6 +1,9 @@
 ---
 import { projects } from "../data/projects";
 import ProjectCard from "./project-card.astro";
+
+const projectsAux = projects.sort((a, b) => b.stack.length - a.stack.length);
+
 ---
 
 <style>
@@ -15,10 +18,8 @@ import ProjectCard from "./project-card.astro";
 
 <section class="py-16 bg-gray-100 dark:bg-gray-900">
   <div class="max-w-6xl mx-auto px-4">
-    <h2
-      class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12"
-    >
-      🚀 Proyectos
+    <h2 class="text-4xl font-bold text-center text-indigo-700 dark:text-indigo-400 mb-8">
+      Proyectos
     </h2>
 
     <!-- Contenedor del carrusel -->
@@ -29,7 +30,7 @@ import ProjectCard from "./project-card.astro";
         class="flex overflow-x-auto gap-6 no-scrollbar scroll-smooth"
       >
         {
-          projects.map((p) => (
+          projectsAux.map((p) => (
             <div class="flex-shrink-0 w-full sm:w-[22rem]">
               <ProjectCard project={p} />
             </div>
@@ -37,36 +38,73 @@ import ProjectCard from "./project-card.astro";
         }
       </div>
 
-      <!-- Flechas -->
-      <!-- Flechas -->
+      <!-- Flechas izquierda y derecha -->
       <button
         id="btn-left"
         type="button"
-        class="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 text-2xl px-3 py-1 shadow rounded-full hover:scale-105 transition"
+        class="hidden sm:flex items-center justify-center absolute left-[-2.5rem] top-1/2 -translate-y-1/2 z-10
+         w-10 h-10 bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 border border-gray-300 dark:border-gray-600
+         rounded-full shadow-lg hover:scale-110 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition duration-300"
+        title="Anterior"
       >
-        &#10094;
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
       </button>
 
       <button
         id="btn-right"
         type="button"
-        class="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 text-2xl px-3 py-1 shadow rounded-full hover:scale-105 transition"
+        class="hidden sm:flex items-center justify-center absolute right-[-2.5rem] top-1/2 -translate-y-1/2 z-10
+         w-10 h-10 bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 border border-gray-300 dark:border-gray-600
+         rounded-full shadow-lg hover:scale-110 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition duration-300"
+        title="Siguiente"
       >
-        &#10095;
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"></path>
+        </svg>
       </button>
     </div>
   </div>
 </section>
 
 <script is:inline>
-  const slider = document.getElementById('project-slider');
+  const slider = document.getElementById("project-slider");
 
-  document.getElementById('btn-left')?.addEventListener('click', () => {
-    slider?.scrollBy({ left: -300, behavior: 'smooth' });
+  const scrollByCard = () => {
+    const card = slider?.querySelector("div");
+    if (!card) return 0;
+    const cardStyles = window.getComputedStyle(card);
+    const cardWidth = card.offsetWidth;
+    const gap = parseInt(cardStyles.marginRight || "24"); // fallback a 24px
+    return cardWidth + gap;
+  };
+
+  document.getElementById("btn-left")?.addEventListener("click", () => {
+    slider?.scrollBy({ left: -scrollByCard(), behavior: "smooth" });
   });
 
-  document.getElementById('btn-right')?.addEventListener('click', () => {
-    slider?.scrollBy({ left: 300, behavior: 'smooth' });
+  document.getElementById("btn-right")?.addEventListener("click", () => {
+    slider?.scrollBy({ left: scrollByCard(), behavior: "smooth" });
   });
 </script>
-
