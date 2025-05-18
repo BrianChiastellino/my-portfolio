@@ -1,0 +1,18 @@
+---
+import { skils } from "../data/skills";
+---
+
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+    {skils.map((skill) => (
+      <div class="flex flex-col items-center group">
+        <img
+          src={skill.icon}
+          alt={skill.name}
+          class="w-12 h-12 group-hover:scale-110 transition-transform duration-300"
+        />
+        <span class="text-sm text-gray-800 dark:text-white mt-2 text-center">{skill.name}</span>
+      </div>
+    ))}
+  </div>
+</div>

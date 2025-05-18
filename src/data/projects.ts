@@ -35,11 +35,11 @@ export const projects: Project[] = [
         id: "4",
         title: "Portafolio",
         description:
-          "Portfolio profesional desarrollado con Astro y TailwindCSS, pensado como una SPA fluida y ligera. Incluye navegación con scroll suave, diseño responsive, modo oscuro, animaciones suaves y componentes reutilizables. Presenta tus proyectos, habilidades y un formulario de contacto funcional con integración a Formspree.",
+          "Portfolio profesional desarrollado con Astro y TailwindCSS, pensado como una SPA fluida y ligera. Incluye navegación con scroll suave, diseño responsive, modo oscuro, animaciones suaves y componentes reutilizables.",
           stackInfo: "Frontend",
         stack: ["Astro","TypeScript", "TailwindCSS"],
-        image: "/assets/project-icons/portfolio.png", // podés usar tu ícono o imagen personalizada
-        githubUrl: "https://github.com/BrianChiastellino/my-portfolio" // actualizalo si cambia
+        image: "/assets/project-icons/portfolio.png", 
+        githubUrl: "https://github.com/BrianChiastellino/my-portfolio" 
       }
       
 
